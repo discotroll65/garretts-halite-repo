@@ -1,13 +1,9 @@
 $:.unshift(File.dirname(__FILE__))
 require 'networking'
-require 'pry-byebug'
 
-# because we gem installed pry-byebug, we can put binding.pry in here to debug
-# however, the network seems to override the STDOUT stream, so won't be useful
-# unless you modify networking.rb
-# binding.pry
 network = Networking.new("RubyBot")
 tag, map = network.configure
+
 while true
   moves = []
   map = network.frame
@@ -25,3 +21,4 @@ while true
 
   network.send_moves(moves)
 end
+
