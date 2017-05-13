@@ -99,17 +99,20 @@ end
 def is_row_owned?(cur_map, cur_loc, tag)
   own_all = true
   fixed_height = cur_loc.y
-  0...cur_map.width do |row|
+  (0...cur_map.width).each do |row|
     site = cur_map.site(Location.new(row, fixed_height))
     own_all = false if site.owner != tag
   end
+  # if own_all
+  #   NETWORK.log("Own this Map_row: of #{cur_map.content[fixed_height]}, tag is #{tag}")
+  # end
   own_all
 end
 
 def is_row_high_prod?(cur_map, cur_loc)
   high_prod = false
   fixed_height = cur_loc.y
-  0...cur_map.width do |row|
+  (0...cur_map.width).each do |row|
     site = cur_map.site(Location.new(row, fixed_height))
     high_prod = true if site.production >= 8
   end
